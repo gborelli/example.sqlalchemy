@@ -1,7 +1,7 @@
 <configure xmlns="http://namespaces.zope.org/zope"
-           xmlns:i18n="http://namespaces.zope.org/i18n"
-           xmlns:db="http://namespaces.zope.org/db"
-           i18n_domain="collective.simplemanagement">
+    xmlns:i18n="http://namespaces.zope.org/i18n"
+    xmlns:db="http://namespaces.zope.org/db"
+    i18n_domain="example.sqlachemy">
 
   <include file="configure.zcml" />
 
