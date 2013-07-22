@@ -1,11 +1,13 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
     xmlns:five="http://namespaces.zope.org/five"
+    xmlns:browser="http://namespaces.zope.org/browser"
     xmlns:i18n="http://namespaces.zope.org/i18n"
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
     i18n_domain="example.sqlalchemy">
 
-  <five:registerPackage package="." initialize=".initialize" />
+  <includeDependencies package="." />
+  <include package="z3c.saconfig" file="meta.zcml" />
 
   <genericsetup:registerProfile
       name="default"
@@ -14,6 +16,21 @@
       description="Installs the example.sqlalchemy package"
       provides="Products.GenericSetup.interfaces.EXTENSION"
       />
-  <!-- -*- extra stuff goes here -*- -->
-  
+
+  <genericsetup:importStep
+      name="example.sqlalchemy"
+      title="extra import handlers"
+      description=""
+      handler="example.sqlalchemy.setuphandlers.setupVarious"
+      />
+
+
+  <browser:page
+    for="plone.app.layout.navigation.interfaces.INavigationRoot"
+    name="messages"
+    class=".browser.MessageList"
+    template="templates/message_list.pt"
+    permission="zope2.View"
+  />
+
 </configure>

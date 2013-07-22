@@ -1,0 +1,60 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="example.sqlalchemy">
+<body>
+<head>
+  <metal:block fill-slot="top_slot"
+               tal:define="dummy python:request.set('disable_border',1)"/>
+</head>
+
+
+<metal:main fill-slot="main">
+  <tal:main-macro metal:define-macro="main"
+            tal:define="results view/results">
+
+    <div tal:replace="structure provider:plone.abovecontenttitle" />
+    <h1 i18n:translate="">Message</h1>
+
+    <div tal:replace="structure provider:plone.abovecontentbody" />
+
+
+    <div><a href="./messages"
+            i18n:translate="">back to messages</a>
+        <a tal:attributes="href string:./messages/${view/year}"
+            i18n:translate="">back to year</a></div>
+
+
+    <div tal:condition="not: results"
+        i18n:translate="">
+        message not found
+    </div>
+
+    <div tal:condition="results" id="results">
+        <table>
+            <tr>
+              <th i18n:translate="">id</th>
+              <td tal:content="results/message_id"></td>
+            </tr>
+            <tr>
+              <th i18n:translate="">Title</th>
+              <td tal:content="results/title"></td>
+            </tr>
+            <tr>
+              <th i18n:translate="">Year</th>
+              <td tal:content="results/year"></td>
+            </tr>
+        </table>
+    </div>
+
+    <div tal:replace="structure provider:plone.belowcontentbody" />
+
+  </tal:main-macro>
+</metal:main>
+
+
+</body>
+</html>

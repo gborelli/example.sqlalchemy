@@ -6,14 +6,16 @@ version = '1.0'
 setup(name='example.sqlalchemy',
       version=version,
       description="Example sqlalchemy integration",
-      long_description=open("README.md").read() + "\n" +
-                       open(os.path.join("docs", "HISTORY.txt")).read(),
+      long_description=(
+          open("README.md").read() + "\n" +
+          open(os.path.join("docs", "HISTORY.txt")).read()
+      ),
       # Get more strings from
       # http://pypi.python.org/pypi?:action=list_classifiers
       classifiers=[
-        "Framework :: Plone",
-        "Programming Language :: Python",
-        ],
+          "Framework :: Plone",
+          "Programming Language :: Python",
+      ],
       keywords='',
       author='',
       author_email='',
@@ -26,14 +28,19 @@ setup(name='example.sqlalchemy',
       zip_safe=False,
       install_requires=[
           'setuptools',
-          # -*- Extra requirements: -*-
+          'SQLAlchemy',
+          'z3c.saconfig',
+          'zope.sqlalchemy',
       ],
+      extras_require={
+          'test': [
+              'plone.app.testing'
+          ],
+      },
       entry_points="""
       # -*- Entry points: -*-
 
       [z3c.autoinclude.plugin]
       target = plone
-      """,
-      setup_requires=["PasteScript"],
-      paster_plugins=["ZopeSkel"],
+      """
       )
