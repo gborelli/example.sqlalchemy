@@ -29,10 +29,11 @@ def setupVarious(context):
         return
 
     portal = context.getSite()
+    # All'installazione creo tutte le tabelle necessarie al mio db
     session = Session()
     Base.metadata.create_all(session.bind)
 
-    # setup dummy data
+    # e carico dei dati d'esempio
     for item in dummy_data:
         el = Message(**item)
         session.add(el)

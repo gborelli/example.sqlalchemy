@@ -11,7 +11,8 @@ Session = named_scoped_session("mydb")
 
 
 class Message(Base):
-    """Database-backed implementation of IScreening
+    """Database-backed implementation of IMessage
+    Cfr. Documentazione di SQLAlchemy
     """
     implements(IMessage)
 
